@@ -173,14 +173,20 @@ public class SwingExample implements ActionListener{
 				String sql="delete from student where id=?";
 				PreparedStatement pst=conn.prepareStatement(sql);
 				pst.setInt(1, Integer.parseInt(t1.getText()));
-				
-				pst.executeUpdate();
-				t1.setText("");
-				t2.setText("");
-				t3.setText("");
-				t4.setText("");
-				t5.setText("");
-				JOptionPane.showMessageDialog(f, "Data Deleted Successfully");
+				if(t1.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(f, "Id Is Mandatory");
+				}
+				else
+				{
+					pst.executeUpdate();
+					t1.setText("");
+					t2.setText("");
+					t3.setText("");
+					t4.setText("");
+					t5.setText("");
+					JOptionPane.showMessageDialog(f, "Data Deleted Successfully");
+				}
 			
 			} catch (Exception e2) {
 				e2.printStackTrace();
